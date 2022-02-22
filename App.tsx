@@ -1,7 +1,8 @@
-import { Container, NativeBaseProvider, StatusBar, VStack } from "native-base";
+import { Container, NativeBaseProvider } from "native-base";
 import TaskSelection, { TaskType } from "./src/features/TaskSelection";
 import React from "react";
 import Timer from "./src/features/Timer";
+import { Dimensions } from "react-native";
 
 export default function App() {
   const [selectedTask, setSelectedTask] = React.useState<TaskType | null>(null);
@@ -9,26 +10,21 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <Container
-        width={"100%"}
-        height={"100%"}
+        safeArea
         flex={1}
-        paddingY={3}
-        paddingX={2}
-        centerContent
+        maxWidth={Dimensions.get("window").width}
+        px={4}
       >
-        <StatusBar />
-        <VStack flex={1} width={"100%"}>
-          {selectedTask ? (
-            <Timer
-              selectedTask={selectedTask}
-              onCancel={() => {
-                setSelectedTask(null);
-              }}
-            />
-          ) : (
-            <TaskSelection onTaskSelect={setSelectedTask} />
-          )}
-        </VStack>
+        {selectedTask ? (
+          <Timer
+            selectedTask={selectedTask}
+            onCancel={() => {
+              setSelectedTask(null);
+            }}
+          />
+        ) : (
+          <TaskSelection onTaskSelect={setSelectedTask} />
+        )}
       </Container>
     </NativeBaseProvider>
   );

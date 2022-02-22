@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList } from "react-native";
 import Header from "../../components/Header";
 import { Box, Button, HStack, Input, Text, VStack } from "native-base";
 
@@ -18,13 +18,13 @@ const TaskSelection: React.FC<TaskSelectionProps> = ({ onTaskSelect }) => {
   ]);
 
   return (
-    <View style={styles.container}>
+    <>
       <Header value={"My tasks"} />
-      <HStack alignItems={"center"} space={"sm"}>
+      <HStack alignItems={"center"} space={"sm"} width={"100%"}>
         <Input
           placeholder="Add new task..."
-          isFullWidth
           onChangeText={setTaskName}
+          flex={1}
         />
         <Button
           size={"sm"}
@@ -35,7 +35,7 @@ const TaskSelection: React.FC<TaskSelectionProps> = ({ onTaskSelect }) => {
           Add
         </Button>
       </HStack>
-      <Box flex={1} marginY={5} marginX={4}>
+      <Box px={4} pt={5} pb={2} width={"100%"}>
         <FlatList
           data={tasks.map((task, index) => ({
             ...task,
@@ -66,14 +66,8 @@ const TaskSelection: React.FC<TaskSelectionProps> = ({ onTaskSelect }) => {
           )}
         />
       </Box>
-    </View>
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default TaskSelection;

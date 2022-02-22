@@ -9,7 +9,7 @@ type TimerProps = {
 
 const Timer: React.FC<TimerProps> = ({ selectedTask, onCancel }) => {
   return (
-    <VStack flex={1} width={"100%"}>
+    <VStack flex={1}>
       <Card mt={1}>
         <HStack alignItems={"center"} justifyContent={"space-between"}>
           <Text>{selectedTask.title}</Text>
